@@ -3,7 +3,10 @@
 import * as React from 'react';
 import { View, Button, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import MaterialCommunityIcons from
+'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from './views/HomeScreen';
 import SobreScreen from './views/SobreScreen';
@@ -11,21 +14,26 @@ import ProdutoScreen from './views/ProdutoScreen';
 import ContatoScreen from './views/ContatoScreen';
 
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
-      <Stack.Screen name="Home" component=
-      {HomeScreen} />
-      <Stack.Screen name="Sobre" component=
+      <Tab.Navigator initialRouteName='Home'>
+      <Tab.Screen name="Home" component=
+      {HomeScreen} 
+      options={{
+        tabBarIcon: ({color, size }) => (
+           <MaterialCommunityIcons name="home" color={color} size={size} /> 
+        ),}}
+      />
+      <Tab.Screen name="Sobre" component=
       {SobreScreen} />
-      <Stack.Screen name="Produtos" component=
+      <Tab.Screen name="Produtos" component=
       {ProdutoScreen} />
-      <Stack.Screen name="Contato" component=
+      <Tab.Screen name="Contato" component=
       {ContatoScreen} />
-      </Stack.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
     
   );
